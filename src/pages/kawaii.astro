@@ -1,0 +1,18 @@
+---
+import Gallery from "../components/Gallery.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Asaa Store">
+	<div class="sticky top-0 flex w-full justify-end p-3">
+		<a href="/tech" class="border-tech text-tech flex items-center gap-2 rounded-full border bg-white px-4 py-2">
+			<svg class="text-tech h-5 w-5">
+				<use href="/sprite.svg#device"></use>
+			</svg>
+			Ver Tecnología
+		</a>
+	</div>
+	<h2 class="text-center text-2xl font-bold">Productos de Tecnología</h2>
+	<p class="text-md mb-5 text-center">Los mejores gadgets al mejor precio</p>
+	<Gallery category="kawaii" />
+</Layout>
