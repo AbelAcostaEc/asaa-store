@@ -7,6 +7,6 @@ let search = "";
 const filteredProducts = products.filter((p) => p.category === category).filter((p) => search === "" || p.name.toLowerCase().includes(search.toLowerCase()));
 ---
 
-<div class="lg:m-auto grid w-full  lg:w-3/4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="gallery">
+<div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:m-auto lg:w-3/4 lg:grid-cols-4" id="gallery">
 	{filteredProducts.map((product) => <ProductCard product={product} category={category} />)}
 </div>
