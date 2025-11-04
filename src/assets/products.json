@@ -1,4 +1,11 @@
 [
+	
+	{
+		"name": "Squishy Tralaleros",
+		"description": "Squishy tralaleros varios diseños.",
+		"category": "kawaii",
+		"images": ["squishy_tralaleros_1.jpeg", "squishy_tralaleros_2.jpeg", "squishy_tralaleros_3.jpeg"]
+	},
 	{
 		"name": "Soporte tipo Manito",
 		"description": "Soporte para celular",
