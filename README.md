@@ -1,46 +1,112 @@
-# Astro Starter Kit: Basics
+# 🌸 Asaa Store
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Una tienda en línea estática que combina lo mejor del **mundo tecnológico y kawaii** 💻✨
+Creada con **Astro**, **React** y **Tailwind CSS**, enfocada en el rendimiento, la estética y la experiencia de usuario.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 🚀 Características principales
 
-Inside of your Astro project, you'll see the following folders and files:
+* ⚡ **Rendimiento ultrarrápido** gracias a [Astro](https://astro.build)
+* 💅 **Diseño moderno y responsive** con [Tailwind CSS](https://tailwindcss.com)
+* ⚛️ **Componentes dinámicos** usando [React](https://react.dev)
+* 🛍️ **Catálogo de productos kawaii y tecnológicos**
+* 📱 Optimizada para **móviles, tablets y escritorio**
 
-```text
+---
+
+## 🧩 Tecnologías utilizadas
+
+| Tecnología       | Descripción                                            |
+| ---------------- | ------------------------------------------------------ |
+| **Astro**        | Framework principal para sitios estáticos y rápidos    |
+| **React**        | Para componentes interactivos                          |
+| **Tailwind CSS** | Framework de estilos con utilidades                    |
+| **Vite**         | Herramienta de compilación rápida (incluida con Astro) |
+
+---
+
+## 🛠️ Instalación y ejecución local
+
+1. Clona el repositorio:
+
+   ```bash
+   git clone https://github.com/tu-usuario/tech-kawaii-store.git
+   ```
+
+2. Entra en la carpeta del proyecto:
+
+   ```bash
+   cd tech-kawaii-store
+   ```
+
+3. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+4. Inicia el entorno de desarrollo:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abre en tu navegador:
+
+   ```
+   http://localhost:4321
+   ```
+
+---
+
+## 🧱 Estructura del proyecto
+
+```bash
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── public/              # Recursos estáticos (imágenes, íconos, etc.)
+├── src/
+│   ├── components/      # Componentes de React y Astro
+│   ├── layouts/         # Plantillas base
+│   ├── pages/           # Rutas del sitio (index.astro, productos.astro, etc.)
+│   ├── styles/          # Archivos Tailwind y CSS adicionales
+│   └── data/            # Datos de productos (JSON o JS)
+├── package.json
+└── astro.config.mjs
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## 🌐 Despliegue
 
-All commands are run from the root of the project, from a terminal:
+Puedes desplegar el sitio fácilmente en plataformas como:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+* [Vercel](https://vercel.com)
+* [Netlify](https://www.netlify.com)
+* [Cloudflare Pages](https://pages.cloudflare.com)
 
-## 👀 Want to learn more?
+Ejemplo:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## 📸 Vista previa
+
+*(Agrega una captura de pantalla aquí cuando tengas el diseño final)*
+
+---
+
+## 💖 Créditos
+
+Proyecto creado por [Tu Nombre o Alias].
+Inspirado en la fusión entre la cultura kawaii japonesa y el amor por la tecnología.
+
+---
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia **MIT** — libre de usar y modificar con atribución.
