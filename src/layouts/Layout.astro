@@ -11,6 +11,26 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/img/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<!-- SEO básico -->
+		<meta name="description" content="Asaa Soluciones: Explora los últimos gadgets tecnológicos y productos adorables del Bazar Kawaii. ¡Encuentra lo que más te guste!" />
+		<meta name="keywords" content="tecnología, gadgets, bazar, kawaii, productos adorables, tienda online, gadgets únicos" />
+		<meta name="author" content="Asaa Soluciones" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:title" content="Asaa Soluciones - Tecnología & Bazar Kawaii" />
+		<meta property="og:description" content="Descubre los últimos gadgets tecnológicos y productos adorables del Bazar Kawaii en Asaa Soluciones." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://asaa-soluciones.netlify.app/" />
+		<meta property="og:image" content="https://asaa-soluciones.netlify.app/img/preview.png" />
+		<meta property="og:locale" content="es_ES" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Asaa Soluciones - Tecnología & Bazar Kawaii" />
+		<meta name="twitter:description" content="Explora gadgets tecnológicos y productos adorables del Bazar Kawaii en Asaa Soluciones." />
+		<meta name="twitter:image" content="https://asaa-soluciones.netlify.app/img/preview.png" />
+		<meta name="twitter:site" content="@AsaaSoluciones" />
 	</head>
 	<body>
 		<slot />
