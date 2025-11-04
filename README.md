@@ -94,15 +94,9 @@ npm run preview
 
 ---
 
-## 📸 Vista previa
-
-*(Agrega una captura de pantalla aquí cuando tengas el diseño final)*
-
----
-
 ## 💖 Créditos
 
-Proyecto creado por [Tu Nombre o Alias].
+Proyecto creado por AsaaSysEc.
 Inspirado en la fusión entre la cultura kawaii japonesa y el amor por la tecnología.
 
 ---
