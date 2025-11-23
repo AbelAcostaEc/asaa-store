@@ -3,7 +3,9 @@
 		"name": "Squishy Tralaleros",
 		"description": "Squishy tralaleros varios diseños.",
 		"category": "kawaii",
-		"images": ["squishy_tralaleros_1.jpeg", "squishy_tralaleros_2.jpeg", "squishy_tralaleros_3.jpeg"]
+		"images": ["squishy_tralaleros_1.jpeg", "squishy_tralaleros_2.jpeg", "squishy_tralaleros_3.jpeg"],
+		"badge": "popular",
+		"heroSection": true
 	},
 	{
 		"name": "Soporte tipo Manito",
@@ -15,7 +17,9 @@
 		"name": "Mochila Capibara",
 		"description": "Mochila con diseño de capibara.",
 		"category": "kawaii",
-		"image": "mochila_capibara.png"
+		"image": "mochila_capibara.png",
+		"badge": "destacado",
+		"heroSection": true
 	},
 	{
 		"name": "Mochila Capibara",
@@ -33,7 +37,9 @@
 		"name": "Mousepad",
 		"description": "Mousepad varios diseños",
 		"category": "tech",
-		"images": ["mouse_pad_3.jpeg", "mouse__pad_gamer.webp", "mouse_pad.jpg"]
+		"images": ["mouse_pad_3.jpeg", "mouse__pad_gamer.webp", "mouse_pad.jpg"],
+		"badge": "destacado",
+		"heroSection": true
 	},
 	{
 		"name": "Spinner",
@@ -45,7 +51,8 @@
 		"name": "Mouse con Cable",
 		"description": "Mouse luminoso compatible con Windows,MAC, Linux.",
 		"category": "tech",
-		"image": "mouse.jpg"
+		"image": "mouse.jpg",
+		"heroSection": true
 	},
 	{
 		"name": "Regleta USB",

@@ -1,0 +1,65 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-md">
+	<div class="container mx-auto px-4 py-4">
+		<div class="flex items-center justify-between">
+			{/* Logo and Brand */}
+			<a href="/" class="flex items-center gap-3 transition-transform duration-300 hover:scale-105">
+				<div class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg">
+					<span class="text-2xl font-bold text-white">AS</span>
+				</div>
+				<div class="hidden md:block">
+					<h1 class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-xl font-bold text-transparent">Asaa Soluciones</h1>
+					<p class="text-xs text-gray-600">Tecnología & Bazar Kawaii</p>
+				</div>
+			</a>
+
+			{/* Desktop Navigation */}
+			<nav class="hidden items-center gap-6 md:flex">
+				<a href="/" class={`font-semibold transition-colors duration-300 ${currentPath === "/" ? "text-purple-600" : "text-gray-700 hover:text-purple-600"}`}> Inicio </a>
+				<a href="/tech" class={`font-semibold transition-colors duration-300 ${currentPath === "/tech" ? "text-purple-600" : "text-gray-700 hover:text-purple-600"}`}> 🔧 Tecnología </a>
+				<a href="/kawaii" class={`font-semibold transition-colors duration-300 ${currentPath === "/kawaii" ? "text-pink-600" : "text-gray-700 hover:text-pink-600"}`}> 🌸 Kawaii </a>
+			</nav>
+
+			{/* Mobile Menu Button */}
+			<button id="mobile-menu-btn" class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 transition-colors duration-300 hover:bg-gray-200 md:hidden" aria-label="Toggle menu">
+				<svg class="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
+		</div>
+
+		{/* Mobile Navigation */}
+		<nav id="mobile-menu" class="mt-4 hidden flex-col gap-3 border-t border-gray-200 pt-4 md:hidden">
+			<a href="/" class={`block rounded-lg px-4 py-2 font-semibold transition-colors duration-300 ${currentPath === "/" ? "bg-purple-100 text-purple-600" : "text-gray-700 hover:bg-gray-100"}`}> Inicio </a>
+			<a href="/tech" class={`block rounded-lg px-4 py-2 font-semibold transition-colors duration-300 ${currentPath === "/tech" ? "bg-purple-100 text-purple-600" : "text-gray-700 hover:bg-gray-100"}`}> 🔧 Tecnología </a>
+			<a href="/kawaii" class={`block rounded-lg px-4 py-2 font-semibold transition-colors duration-300 ${currentPath === "/kawaii" ? "bg-pink-100 text-pink-600" : "text-gray-700 hover:bg-gray-100"}`}> 🌸 Kawaii </a>
+		</nav>
+	</div>
+</header>
+
+<script>
+	function initMobileMenu() {
+		const menuBtn = document.getElementById("mobile-menu-btn");
+		const mobileMenu = document.getElementById("mobile-menu");
+
+		if (menuBtn && mobileMenu) {
+			// Remove existing listeners
+			const newMenuBtn = menuBtn.cloneNode(true);
+			menuBtn.parentNode?.replaceChild(newMenuBtn, menuBtn);
+
+			newMenuBtn.addEventListener("click", () => {
+				mobileMenu.classList.toggle("hidden");
+				mobileMenu.classList.toggle("flex");
+			});
+		}
+	}
+
+	// Initialize on load
+	initMobileMenu();
+
+	// Re-initialize after Astro navigation
+	document.addEventListener("astro:page-load", initMobileMenu);
+</script>

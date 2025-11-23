@@ -1,0 +1,134 @@
+---
+import products from "../assets/products.json";
+
+// Select products marked with heroSection: true
+const featuredProducts = products.filter((p) => p.heroSection === true);
+
+const phoneNumber = "593998894898";
+---
+
+<div class="relative h-[500px] w-full overflow-hidden bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400">
+	<div class="slider-container relative h-full w-full">
+		{
+			featuredProducts.map((product, index) => {
+				const images = product.images ? product.images : product.image ? [product.image] : [];
+				const imagePath = images.length > 0 ? `/img/products/${images[0]}` : "/img/placeholder.jpg";
+				const category = product.category;
+				const message = `¡Hola! Estoy interesad@ en el producto destacado.`;
+				const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+				return (
+					<div class={`slide absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${index === 0 ? "opacity-100" : "opacity-0"}`} data-slide={index}>
+						<div class="container mx-auto px-4">
+							<div class="flex flex-col items-center gap-8 md:flex-row md:justify-center">
+								{/* Image */}
+								<div class="animate-float w-full md:w-1/2 lg:w-1/3">
+									<div class="overflow-hidden rounded-3xl bg-white/10 p-4 shadow-2xl backdrop-blur-md">
+										<img src={imagePath} alt={product.name} class="h-64 w-full rounded-2xl object-cover shadow-lg md:h-80" />
+									</div>
+								</div>
+
+								{/* Content */}
+								<div class="w-full text-center md:w-1/2 md:text-left lg:w-1/3">
+									<span class={`inline-block rounded-full px-4 py-1 text-sm font-semibold ${category === "tech" ? "bg-purple-500" : "bg-pink-500"} mb-4 text-white shadow-lg`}>{category === "tech" ? "🔧 Tecnología" : "🌸 Kawaii"}</span>
+									<h2 class="mb-4 text-4xl font-extrabold text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] md:text-5xl lg:text-6xl">{product.name}</h2>
+									<p class="mb-6 text-lg text-white/90 drop-shadow-md md:text-xl">{product.description}</p>
+									<a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="glass-effect inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-bold text-white shadow-2xl transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+										<svg class="h-6 w-6">
+											<use href="/sprite.svg#whatsapp" />
+										</svg>
+										Comprar Ahora
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				);
+			})
+		}
+	</div>
+
+	{/* Navigation Dots */}
+	<div class="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-3">
+		{featuredProducts.map((_, index) => <button class={`dot h-3 w-3 rounded-full transition-all duration-300 ${index === 0 ? "w-8 bg-white" : "bg-white/50 hover:bg-white/80"}`} data-slide-to={index} aria-label={`Go to slide ${index + 1}`} />)}
+	</div>
+</div>
+
+<script>
+	function initSlider() {
+		const slides = document.querySelectorAll(".slide");
+		const dots = document.querySelectorAll(".dot");
+		const container = document.querySelector(".slider-container");
+		let currentSlide = 0;
+		let autoplayInterval: number;
+		let isPaused = false;
+
+		function showSlide(index: number) {
+			// Hide all slides
+			slides.forEach((slide) => {
+				slide.classList.remove("opacity-100");
+				slide.classList.add("opacity-0");
+			});
+
+			// Update dots
+			dots.forEach((dot, i) => {
+				if (i === index) {
+					dot.classList.add("w-8", "bg-white");
+					dot.classList.remove("bg-white/50");
+				} else {
+					dot.classList.remove("w-8", "bg-white");
+					dot.classList.add("bg-white/50");
+				}
+			});
+
+			// Show current slide
+			slides[index].classList.remove("opacity-0");
+			slides[index].classList.add("opacity-100");
+			currentSlide = index;
+		}
+
+		function nextSlide() {
+			if (!isPaused) {
+				const next = (currentSlide + 1) % slides.length;
+				showSlide(next);
+			}
+		}
+
+		function startAutoplay() {
+			autoplayInterval = window.setInterval(nextSlide, 5000);
+		}
+
+		function stopAutoplay() {
+			clearInterval(autoplayInterval);
+		}
+
+		// Dot navigation
+		dots.forEach((dot, index) => {
+			dot.addEventListener("click", () => {
+				showSlide(index);
+				stopAutoplay();
+				startAutoplay(); // Restart autoplay
+			});
+		});
+
+		// Pause on hover
+		if (container) {
+			container.addEventListener("mouseenter", () => {
+				isPaused = true;
+			});
+
+			container.addEventListener("mouseleave", () => {
+				isPaused = false;
+			});
+		}
+
+		// Start autoplay
+		startAutoplay();
+	}
+
+	// Initialize on load
+	initSlider();
+
+	// Re-initialize after Astro navigation
+	document.addEventListener("astro:page-load", initSlider);
+</script>

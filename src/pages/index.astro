@@ -1,5 +1,8 @@
 ---
-import Main from "../components/Main.astro";
+import BenefitsSection from "../components/BenefitsSection.astro";
+import CategoriesSection from "../components/CategoriesSection.astro";
+import HeroSlider from "../components/HeroSlider.astro";
+import WelcomeSection from "../components/WelcomeSection.astro";
 import Layout from "../layouts/Layout.astro";
 
 const structuredData = {
@@ -18,5 +21,8 @@ const structuredData = {
 ---
 
 <Layout title="Asaa Soluciones - Tecnología & Bazar Kawaii | Tienda Online Ecuador" description="Descubre los mejores gadgets tecnológicos y productos kawaii en Ecuador. Compra por WhatsApp con envío a todo el país. ¡Encuentra lo que más te guste!" canonical="/" structuredData={structuredData}>
-	<Main />
+	<HeroSlider />
+	<WelcomeSection />
+	<CategoriesSection />
+	<BenefitsSection />
 </Layout>

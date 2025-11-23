@@ -4,22 +4,82 @@ import ProductCard from "./ProductCard.astro";
 const { category } = Astro.props;
 
 const filteredProducts = products.filter((p) => p.category === category);
+
+// Category configuration
+const categoryConfig = {
+	tech: {
+		title: "Tecnología",
+		subtitle: "Gadgets y Accesorios Tech",
+		description: "Descubre los últimos productos tecnológicos para tu día a día",
+		gradient: "from-purple-600 to-blue-600",
+	},
+	kawaii: {
+		title: "Bazar Kawaii",
+		subtitle: "Variedades Adorables",
+		description: "Encuentra productos únicos y adorables que alegrarán tu día",
+		gradient: "from-pink-600 to-orange-600",
+	},
+};
+
+const config = categoryConfig[category];
 ---
 
-<div class="mb-6 w-full lg:m-auto lg:mb-6 lg:w-3/4">
-	<input type="text" id="product-search" placeholder="Buscar productos..." class={`w-full rounded-lg border-2 px-4 py-3 text-sm shadow-md transition-all duration-300 focus:outline-none focus:ring-2 ${category === "tech" ? "border-tech/30 focus:border-tech focus:ring-tech/50" : "border-kawaii/30 focus:border-kawaii focus:ring-kawaii/50"}`} />
-</div>
+<section class="container mx-auto px-4 py-8 sm:py-12">
+	{/* Section Header */}
+	<div class="mb-8 text-center sm:mb-12">
+		<h1 class={`mb-2 text-3xl font-extrabold sm:text-4xl md:text-5xl bg-gradient-to-r ${config.gradient} bg-clip-text text-transparent`}>
+			{config.title}
+		</h1>
+		<p class="mb-1 text-lg font-semibold text-gray-700 sm:text-xl">
+			{config.subtitle}
+		</p>
+		<p class="text-sm text-gray-600 sm:text-base">
+			{config.description}
+		</p>
+	</div>
 
-<div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:m-auto lg:w-3/4 lg:grid-cols-4" id="gallery">
-	{filteredProducts.map((product) => <ProductCard product={product} category={category} />)}
-</div>
+	{/* Search Bar */}
+	<div class="mb-6 w-full sm:mb-8 lg:mx-auto lg:w-3/4">
+		<div class="relative">
+			<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+				<svg class={`h-5 w-5 ${category === "tech" ? "text-tech" : "text-kawaii"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+				</svg>
+			</div>
+			<input type="text" id="product-search" placeholder="Buscar productos..." class={`w-full rounded-full border-2 py-3 pl-12 pr-4 text-sm shadow-lg transition-all duration-300 focus:outline-none focus:ring-4 sm:text-base ${category === "tech" ? "border-tech/30 focus:border-tech focus:ring-tech/20" : "border-kawaii/30 focus:border-kawaii focus:ring-kawaii/20"}`} />
+		</div>
+
+		{/* Product Counter */}
+		<div class="mt-3 text-center">
+			<p class="text-sm text-gray-600" id="product-count">
+				<span class="font-semibold" id="visible-count">{filteredProducts.length}</span> de <span class="font-semibold">{filteredProducts.length}</span> productos
+			</p>
+		</div>
+	</div>
+
+	{/* Products Grid */}
+	<div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:mx-auto lg:w-3/4 lg:grid-cols-4 lg:gap-8" id="gallery">
+		{filteredProducts.map((product) => <ProductCard product={product} category={category} />)}
+	</div>
+
+	{/* No Results Message */}
+	<div id="no-results" class="hidden py-12 text-center">
+		<svg class="mx-auto mb-4 h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+		</svg>
+		<p class="text-lg font-semibold text-gray-700">No se encontraron productos</p>
+		<p class="text-sm text-gray-500">Intenta con otra búsqueda</p>
+	</div>
+</section>
 
 <script>
 	function initializeSearch() {
 		const searchInput = document.getElementById("product-search") as HTMLInputElement;
 		const gallery = document.getElementById("gallery");
+		const visibleCountEl = document.getElementById("visible-count");
+		const noResults = document.getElementById("no-results");
 
-		if (searchInput && gallery) {
+		if (searchInput && gallery && visibleCountEl && noResults) {
 			// Remove any existing listeners to avoid duplicates
 			const newSearchInput = searchInput.cloneNode(true) as HTMLInputElement;
 			searchInput.parentNode?.replaceChild(newSearchInput, searchInput);
@@ -27,16 +87,31 @@ const filteredProducts = products.filter((p) => p.category === category);
 			newSearchInput.addEventListener("input", (e) => {
 				const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
 				const productCards = gallery.children;
+				let visibleCount = 0;
 
 				Array.from(productCards).forEach((card) => {
 					const productName = card.querySelector("h2")?.textContent?.toLowerCase() || "";
+					const productDesc = card.querySelector("p")?.textContent?.toLowerCase() || "";
 
-					if (productName.includes(searchTerm)) {
+					if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
 						(card as HTMLElement).style.display = "";
+						visibleCount++;
 					} else {
 						(card as HTMLElement).style.display = "none";
 					}
 				});
+
+				// Update counter
+				visibleCountEl.textContent = visibleCount.toString();
+
+				// Show/hide no results message
+				if (visibleCount === 0) {
+					gallery.style.display = "none";
+					noResults.style.display = "block";
+				} else {
+					gallery.style.display = "grid";
+					noResults.style.display = "none";
+				}
 			});
 		}
 	}
