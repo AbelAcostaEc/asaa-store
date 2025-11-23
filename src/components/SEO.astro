@@ -1,0 +1,42 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	canonical?: string;
+	image?: string;
+	type?: "website" | "article";
+	structuredData?: object;
+}
+
+const { title, description, canonical, image = "/img/preview.png", type = "website", structuredData } = Astro.props;
+
+const siteUrl = "https://asaa-soluciones.netlify.app";
+const canonicalURL = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+const imageURL = image.startsWith("http") ? image : `${siteUrl}${image}`;
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content="Asaa Soluciones" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:site" content="@AsaaSoluciones" />
+
+<!-- Structured Data (JSON-LD) -->
+{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}

@@ -1,8 +1,22 @@
 ---
 import Main from "../components/Main.astro";
 import Layout from "../layouts/Layout.astro";
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Store",
+	name: "Asaa Soluciones",
+	description: "Tienda online de tecnología y productos kawaii en Ecuador",
+	url: "https://asaa-soluciones.netlify.app",
+	logo: "https://asaa-soluciones.netlify.app/img/favicon.png",
+	address: {
+		"@type": "PostalAddress",
+		addressCountry: "EC",
+	},
+	sameAs: ["https://twitter.com/AsaaSoluciones"],
+};
 ---
 
-<Layout title="Asaa Store">
+<Layout title="Asaa Soluciones - Tecnología & Bazar Kawaii | Tienda Online Ecuador" description="Descubre los mejores gadgets tecnológicos y productos kawaii en Ecuador. Compra por WhatsApp con envío a todo el país. ¡Encuentra lo que más te guste!" canonical="/" structuredData={structuredData}>
 	<Main />
 </Layout>

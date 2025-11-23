@@ -14,15 +14,32 @@ const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
 let images = product.images ? product.images : product.image ? [product.image] : [];
 // recorrer y armar las rutas completas
 images = images.map((img: string) => `/img/products/${img}`);
+
+// Structured data for product
+const productSchema = {
+	"@context": "https://schema.org",
+	"@type": "Product",
+	name: product.name,
+	description: product.description,
+	image: images.length > 0 ? `https://asaa-soluciones.netlify.app${images[0]}` : undefined,
+	category: category === "tech" ? "Tecnología" : "Kawaii",
+	offers: {
+		"@type": "Offer",
+		availability: "https://schema.org/InStock",
+		priceCurrency: "USD",
+	},
+};
 ---
 
-<div class="overflow-hidden rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105">
+<article class="overflow-hidden rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105" itemscope itemtype="https://schema.org/Product">
+	<script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+
 	<div class={`h-72 overflow-hidden border-b-4 ${category === "tech" ? "border-tech" : "border-kawaii"}`}>
 		<ProductImages images={images} client:load />
 	</div>
 	<div class="p-3">
-		<h2 class={`text-${category === "tech" ? "tech" : "kawaii"} font-semibold text-lg my-3`}>{product.name}</h2>
-		<p>{product.description}</p>
+		<h2 class={`text-${category === "tech" ? "tech" : "kawaii"} font-semibold text-lg my-3`} itemprop="name">{product.name}</h2>
+		<p itemprop="description">{product.description}</p>
 
 		<a href={whatsappURL} target="_blank" rel="noopener noreferrer" class={`mt-4 flex gap-2 items-center justify-center w-full rounded bg-${category === "tech" ? "tech" : "kawaii"} px-4 py-2 text-center text-sm font-semibold text-white transition duration-300 hover:translate-y-1.5 hover:bg-${category === "tech" ? "tech-dark" : "kawaii-dark"}`}>
 			<svg class="h-6 w-6">
@@ -31,4 +48,4 @@ images = images.map((img: string) => `/img/products/${img}`);
 			Comprar por WhatsApp
 		</a>
 	</div>
-</div>
+</article>

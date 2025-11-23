@@ -1,9 +1,17 @@
 ---
 import Gallery from "../components/Gallery.astro";
 import Layout from "../layouts/Layout.astro";
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "CollectionPage",
+	name: "Productos de Tecnología",
+	description: "Los mejores gadgets tecnológicos: mouse, teclados, soportes, audífonos y más accesorios tech al mejor precio",
+	url: "https://asaa-soluciones.netlify.app/tech",
+};
 ---
 
-<Layout title="Asaa Store">
+<Layout title="Tecnología - Gadgets y Accesorios Tech | Asaa Soluciones" description="Descubre los mejores gadgets tecnológicos: mouse gaming, teclados, soportes para laptop, audífonos y más. Compra por WhatsApp con envío a Ecuador." canonical="/tech" structuredData={structuredData}>
 	<div class="sticky top-0 z-10 flex w-full justify-end p-3">
 		<a href="/kawaii" class="border-kawaii text-kawaii flex items-center gap-2 rounded-full border bg-white px-4 py-2">
 			<svg class="text-kawaii h-5 w-5">
