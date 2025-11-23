@@ -2,11 +2,48 @@
 import products from "../assets/products.json";
 import ProductCard from "./ProductCard.astro";
 const { category } = Astro.props;
-let search = "";
 
-const filteredProducts = products.filter((p) => p.category === category).filter((p) => search === "" || p.name.toLowerCase().includes(search.toLowerCase()));
+const filteredProducts = products.filter((p) => p.category === category);
 ---
+
+<div class="mb-6 w-full lg:m-auto lg:mb-6 lg:w-3/4">
+	<input type="text" id="product-search" placeholder="Buscar productos..." class={`w-full rounded-lg border-2 px-4 py-3 text-sm shadow-md transition-all duration-300 focus:outline-none focus:ring-2 ${category === "tech" ? "border-tech/30 focus:border-tech focus:ring-tech/50" : "border-kawaii/30 focus:border-kawaii focus:ring-kawaii/50"}`} />
+</div>
 
 <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:m-auto lg:w-3/4 lg:grid-cols-4" id="gallery">
 	{filteredProducts.map((product) => <ProductCard product={product} category={category} />)}
 </div>
+
+<script>
+	function initializeSearch() {
+		const searchInput = document.getElementById("product-search") as HTMLInputElement;
+		const gallery = document.getElementById("gallery");
+
+		if (searchInput && gallery) {
+			// Remove any existing listeners to avoid duplicates
+			const newSearchInput = searchInput.cloneNode(true) as HTMLInputElement;
+			searchInput.parentNode?.replaceChild(newSearchInput, searchInput);
+
+			newSearchInput.addEventListener("input", (e) => {
+				const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+				const productCards = gallery.children;
+
+				Array.from(productCards).forEach((card) => {
+					const productName = card.querySelector("h2")?.textContent?.toLowerCase() || "";
+
+					if (productName.includes(searchTerm)) {
+						(card as HTMLElement).style.display = "";
+					} else {
+						(card as HTMLElement).style.display = "none";
+					}
+				});
+			});
+		}
+	}
+
+	// Initialize on first load
+	initializeSearch();
+
+	// Re-initialize after Astro navigation
+	document.addEventListener("astro:page-load", initializeSearch);
+</script>
