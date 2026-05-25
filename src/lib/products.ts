@@ -10,6 +10,10 @@ export type Product = {
 	heroSection?: boolean;
 	price?: number | string;
 	oldPrice?: number | string;
+	features?: string[];
+	variants?: string[];
+	idealFor?: string[];
+	availabilityText?: string;
 };
 
 export type ProductWithSlug = Product & {

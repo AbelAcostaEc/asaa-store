@@ -6,7 +6,11 @@
 		"images": ["optimized/squishy_tralaleros_1.webp", "optimized/squishy_tralaleros_2.webp", "optimized/squishy_tralaleros_3.webp"],
 		"badge": "popular",
 		"heroSection": true,
-        "price": 9.99
+		"price": 9.99,
+		"features": ["Textura suave y relajante para apretar", "Diseños tiernos y llamativos para coleccionar", "Buen detalle para regalo o premio escolar"],
+		"variants": ["Varios diseños", "Sujetos a disponibilidad"],
+		"idealFor": ["Regalos pequeños", "Sorpresas para niños", "Colección kawaii"],
+		"availabilityText": "Disponible para consultar diseños por WhatsApp"
 	},
 	{
 		"name": "Soporte tipo Manito",
@@ -20,7 +24,11 @@
 		"category": "kawaii",
 		"image": "optimized/mochila_capibara.webp",
 		"badge": "destacado",
-		"heroSection": true
+		"heroSection": true,
+		"features": ["Diseño de capibara tierno y fácil de combinar", "Ideal para llevar útiles, accesorios o cosas del día a día", "Producto llamativo para regalo o regreso a clases"],
+		"variants": ["Diseño capibara", "Pregunta por stock disponible"],
+		"idealFor": ["Regreso a clases", "Regalo kawaii", "Uso diario"],
+		"availabilityText": "Producto destacado. Escríbenos para confirmar disponibilidad"
 	},
 	{
 		"name": "Mochila Capibara",

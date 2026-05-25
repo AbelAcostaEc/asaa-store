@@ -1,4 +1,4 @@
-# Robots.txt para Asaa Soluciones
+# Robots.txt para Novedades Anghie
 # Permite que todos los motores de búsqueda indexen el sitio
 
 User-agent: *

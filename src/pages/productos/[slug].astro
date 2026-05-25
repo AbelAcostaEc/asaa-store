@@ -17,6 +17,7 @@ const priceLabel = formatPrice(product.price);
 const message = `¡Hola! Estoy interesad@ en comprar el producto: ${product.name}. Precio visto: ${priceLabel}.`;
 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 const mainImage = product.imagesList[0] ?? "/img/preview.png";
+const hasSellingDetails = product.features?.length || product.variants?.length || product.idealFor?.length;
 
 const structuredData = {
 	"@context": "https://schema.org",
@@ -24,8 +25,8 @@ const structuredData = {
 	name: product.name,
 	brand: {
 		"@type": "Brand",
-		name: "Asaa Store",
-		alternateName: "Bazar Angie",
+		name: "Novedades Anghie",
+		alternateName: "Novedades Angie",
 	},
 	description: product.description,
 	image: product.imagesList.map((image) => `https://asaa-soluciones.netlify.app${image}`),
@@ -39,7 +40,7 @@ const structuredData = {
 };
 ---
 
-<Layout title={`${product.name} | Asaa Store - Bazar Angie`} description={`${product.description} Disponible en Asaa Store / Bazar Angie Ecuador. Compra por WhatsApp.`} image={mainImage} canonical={`/productos/${product.slug}`} structuredData={structuredData}>
+<Layout title={`${product.name} | Novedades Anghie`} description={`${product.description} Disponible en Novedades Anghie Ecuador. Compra por WhatsApp.`} image={mainImage} canonical={`/productos/${product.slug}`} structuredData={structuredData}>
 	<main class="bg-gray-50">
 		<section class="container mx-auto px-4 py-8 sm:py-12">
 			<a href={backUrl} class="mb-6 inline-flex items-center gap-2 text-sm font-bold text-gray-600 transition-colors hover:text-gray-900">
@@ -81,6 +82,50 @@ const structuredData = {
 						{product.oldPrice && <p class="text-sm font-semibold text-gray-400 line-through">{formatPrice(product.oldPrice)}</p>}
 					</div>
 
+					{product.availabilityText && <div class="mb-5 rounded-lg border border-green-100 bg-green-50 px-4 py-3 text-sm font-bold text-green-800">{product.availabilityText}</div>}
+
+					{
+						hasSellingDetails && (
+							<div class="mb-6 space-y-5">
+								{product.features?.length && (
+									<section>
+										<h2 class="mb-2 text-sm font-extrabold tracking-wide text-gray-900 uppercase">Por que te va a gustar</h2>
+										<ul class="space-y-2">
+											{product.features.map((feature) => (
+												<li class="flex gap-2 text-sm leading-relaxed text-gray-600">
+													<span class={`mt-1 h-2 w-2 shrink-0 rounded-full ${product.category === "tech" ? "bg-tech" : "bg-kawaii"}`} />
+													<span>{feature}</span>
+												</li>
+											))}
+										</ul>
+									</section>
+								)}
+
+								{product.variants?.length && (
+									<section>
+										<h2 class="mb-2 text-sm font-extrabold tracking-wide text-gray-900 uppercase">Opciones disponibles</h2>
+										<div class="flex flex-wrap gap-2">
+											{product.variants.map((variant) => (
+												<span class="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm font-semibold text-gray-700">{variant}</span>
+											))}
+										</div>
+									</section>
+								)}
+
+								{product.idealFor?.length && (
+									<section>
+										<h2 class="mb-2 text-sm font-extrabold tracking-wide text-gray-900 uppercase">Ideal para</h2>
+										<div class="grid gap-2 sm:grid-cols-2">
+											{product.idealFor.map((item) => (
+												<p class="rounded-lg bg-gray-50 px-3 py-2 text-sm font-semibold text-gray-700">{item}</p>
+											))}
+										</div>
+									</section>
+								)}
+							</div>
+						)
+					}
+
 					<a href={whatsappURL} target="_blank" rel="noopener noreferrer" class={`flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-base font-bold text-white shadow-lg transition hover:scale-[1.02] ${product.category === "tech" ? "gradient-tech" : "gradient-kawaii"}`}>
 						<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 							<path
@@ -89,6 +134,12 @@ const structuredData = {
 						</svg>
 						Comprar por WhatsApp
 					</a>
+
+					<div class="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold text-gray-500">
+						<span class="rounded-lg bg-gray-50 px-2 py-2">Atencion por WhatsApp</span>
+						<span class="rounded-lg bg-gray-50 px-2 py-2">Fotos reales</span>
+						<span class="rounded-lg bg-gray-50 px-2 py-2">Entrega a coordinar</span>
+					</div>
 				</aside>
 			</div>
 		</section>
