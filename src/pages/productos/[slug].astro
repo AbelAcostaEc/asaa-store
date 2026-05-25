@@ -91,11 +91,39 @@ const structuredData = {
 </Layout>
 
 <script>
-	const mainImage = document.getElementById("product-main-image") as HTMLImageElement | null;
-	document.querySelectorAll<HTMLButtonElement>(".product-thumb").forEach((button) => {
-		button.addEventListener("click", () => {
-			const image = button.dataset.image;
-			if (mainImage && image) mainImage.src = image;
+	let productGalleryCleanup: (() => void) | undefined;
+
+	function initProductGallery() {
+		productGalleryCleanup?.();
+
+		const mainImage = document.getElementById("product-main-image") as HTMLImageElement | null;
+		const thumbs = document.querySelectorAll<HTMLButtonElement>(".product-thumb");
+		const cleanups: Array<() => void> = [];
+
+		if (!mainImage || thumbs.length === 0) {
+			productGalleryCleanup = undefined;
+			return;
+		}
+
+		thumbs.forEach((button) => {
+			const handleClick = () => {
+				const image = button.dataset.image;
+				if (!image) return;
+
+				mainImage.src = image;
+				thumbs.forEach((thumb) => thumb.classList.remove("border-gray-700"));
+				button.classList.add("border-gray-700");
+			};
+
+			button.addEventListener("click", handleClick);
+			cleanups.push(() => button.removeEventListener("click", handleClick));
 		});
-	});
+
+		thumbs[0]?.classList.add("border-gray-700");
+		productGalleryCleanup = () => cleanups.forEach((cleanup) => cleanup());
+	}
+
+	initProductGallery();
+	document.addEventListener("astro:page-load", initProductGallery);
+	document.addEventListener("astro:before-swap", () => productGalleryCleanup?.());
 </script>
