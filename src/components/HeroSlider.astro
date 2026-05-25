@@ -7,7 +7,7 @@ const featuredProducts = products.filter((p) => p.heroSection === true);
 const phoneNumber = "593998894898";
 ---
 
-<div class="relative h-[500px] w-full overflow-hidden bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400">
+<div id="hero-slider" class="relative h-[500px] w-full overflow-hidden bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400">
 	<div class="slider-container relative h-full w-full">
 		{
 			featuredProducts.map((product, index) => {
@@ -55,15 +55,27 @@ const phoneNumber = "593998894898";
 </div>
 
 <script>
+	let heroSliderCleanup: (() => void) | undefined;
+
 	function initSlider() {
-		const slides = document.querySelectorAll(".slide");
-		const dots = document.querySelectorAll(".dot");
-		const container = document.querySelector(".slider-container");
+		heroSliderCleanup?.();
+
+		const slider = document.getElementById("hero-slider");
+		if (!slider) return;
+
+		const slides = slider.querySelectorAll(".slide");
+		const dots = slider.querySelectorAll(".dot");
+		const container = slider.querySelector(".slider-container");
+		if (slides.length === 0) return;
+
 		let currentSlide = 0;
-		let autoplayInterval: number;
+		let autoplayInterval: number | undefined;
 		let isPaused = false;
 
 		function showSlide(index: number) {
+			if (slides.length === 0) return;
+			const safeIndex = ((index % slides.length) + slides.length) % slides.length;
+
 			// Hide all slides
 			slides.forEach((slide) => {
 				slide.classList.remove("opacity-100");
@@ -72,7 +84,7 @@ const phoneNumber = "593998894898";
 
 			// Update dots
 			dots.forEach((dot, i) => {
-				if (i === index) {
+				if (i === safeIndex) {
 					dot.classList.add("w-8", "bg-white");
 					dot.classList.remove("bg-white/50");
 				} else {
@@ -82,9 +94,9 @@ const phoneNumber = "593998894898";
 			});
 
 			// Show current slide
-			slides[index].classList.remove("opacity-0");
-			slides[index].classList.add("opacity-100");
-			currentSlide = index;
+			slides[safeIndex].classList.remove("opacity-0");
+			slides[safeIndex].classList.add("opacity-100");
+			currentSlide = safeIndex;
 		}
 
 		function nextSlide() {
@@ -95,31 +107,55 @@ const phoneNumber = "593998894898";
 		}
 
 		function startAutoplay() {
+			if (slides.length < 2) return;
 			autoplayInterval = window.setInterval(nextSlide, 5000);
 		}
 
 		function stopAutoplay() {
-			clearInterval(autoplayInterval);
+			if (autoplayInterval) {
+				clearInterval(autoplayInterval);
+				autoplayInterval = undefined;
+			}
 		}
+
+		const dotCleanups: Array<() => void> = [];
 
 		// Dot navigation
 		dots.forEach((dot, index) => {
-			dot.addEventListener("click", () => {
+			const handleDotClick = () => {
 				showSlide(index);
 				stopAutoplay();
 				startAutoplay(); // Restart autoplay
-			});
+			};
+
+			dot.addEventListener("click", handleDotClick);
+			dotCleanups.push(() => dot.removeEventListener("click", handleDotClick));
 		});
 
 		// Pause on hover
 		if (container) {
-			container.addEventListener("mouseenter", () => {
+			const pauseSlider = () => {
 				isPaused = true;
-			});
+			};
 
-			container.addEventListener("mouseleave", () => {
+			const resumeSlider = () => {
 				isPaused = false;
-			});
+			};
+
+			container.addEventListener("mouseenter", pauseSlider);
+			container.addEventListener("mouseleave", resumeSlider);
+
+			heroSliderCleanup = () => {
+				stopAutoplay();
+				dotCleanups.forEach((cleanup) => cleanup());
+				container.removeEventListener("mouseenter", pauseSlider);
+				container.removeEventListener("mouseleave", resumeSlider);
+			};
+		} else {
+			heroSliderCleanup = () => {
+				stopAutoplay();
+				dotCleanups.forEach((cleanup) => cleanup());
+			};
 		}
 
 		// Start autoplay
@@ -131,4 +167,5 @@ const phoneNumber = "593998894898";
 
 	// Re-initialize after Astro navigation
 	document.addEventListener("astro:page-load", initSlider);
+	document.addEventListener("astro:before-swap", () => heroSliderCleanup?.());
 </script>

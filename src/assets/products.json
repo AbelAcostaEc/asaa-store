@@ -3,21 +3,22 @@
 		"name": "Squishy Tralaleros",
 		"description": "Squishy tralaleros varios diseños.",
 		"category": "kawaii",
-		"images": ["squishy_tralaleros_1.jpeg", "squishy_tralaleros_2.jpeg", "squishy_tralaleros_3.jpeg"],
+		"images": ["optimized/squishy_tralaleros_1.webp", "optimized/squishy_tralaleros_2.webp", "optimized/squishy_tralaleros_3.webp"],
 		"badge": "popular",
-		"heroSection": true
+		"heroSection": true,
+        "price": 9.99
 	},
 	{
 		"name": "Soporte tipo Manito",
 		"description": "Soporte para celular",
 		"category": "tech",
-		"image": "manito.png"
+		"image": "optimized/manito.webp"
 	},
 	{
 		"name": "Mochila Capibara",
 		"description": "Mochila con diseño de capibara.",
 		"category": "kawaii",
-		"image": "mochila_capibara.png",
+		"image": "optimized/mochila_capibara.webp",
 		"badge": "destacado",
 		"heroSection": true
 	},
@@ -31,13 +32,13 @@
 		"name": "Auriculares HS330",
 		"description": "Auriculares color negro y blanco",
 		"category": "tech",
-		"image": "auriculares.png"
+		"image": "optimized/auriculares.webp"
 	},
 	{
 		"name": "Mousepad",
 		"description": "Mousepad varios diseños",
 		"category": "tech",
-		"images": ["mouse_pad_3.jpeg", "mouse__pad_gamer.webp", "mouse_pad.jpg"],
+		"images": ["optimized/mouse_pad_3.webp", "mouse__pad_gamer.webp", "optimized/mouse_pad.webp"],
 		"badge": "destacado",
 		"heroSection": true
 	},
@@ -45,80 +46,80 @@
 		"name": "Spinner",
 		"description": "Spinner plastico varios colores",
 		"category": "kawaii",
-		"image": "spinner.png"
+		"image": "optimized/spinner.webp"
 	},
 	{
 		"name": "Mouse con Cable",
 		"description": "Mouse luminoso compatible con Windows,MAC, Linux.",
 		"category": "tech",
-		"image": "mouse.jpg",
+		"image": "optimized/mouse.webp",
 		"heroSection": true
 	},
 	{
 		"name": "Regleta USB",
 		"description": "Regleta USB 4 puertos",
 		"category": "tech",
-		"image": "regleta.jpg"
+		"image": "optimized/regleta.webp"
 	},
 	{
 		"name": "Cepillo Con Espejo",
 		"description": "Cepillo con espejo color rosado para niña.",
 		"category": "kawaii",
-		"image": "cepillo.jpg"
+		"image": "optimized/cepillo.webp"
 	},
 	{
 		"name": "Papel Brillante A5",
 		"description": "Papel tamaño A5.",
 		"category": "kawaii",
-		"image": "papel_brillante.jpg"
+		"image": "optimized/papel_brillante.webp"
 	},
 	{
 		"name": "Hojas A4",
 		"description": "Paquete 25 Hojas tamaño A4, cuadros y lineas.",
 		"category": "kawaii",
-		"image": "hojas.jpg"
+		"image": "optimized/hojas.webp"
 	},
 	{
 		"name": "Hojas de 4 lineas",
 		"description": "Paquete de 50 hojas tamaño A5.",
 		"category": "kawaii",
-		"image": "lineasycuadros_a5.jpg"
+		"image": "optimized/lineasycuadros_a5.webp"
 	},
 	{
 		"name": "Cartulinas A4",
 		"description": "Cartulinas de colores, blancas, esmaltadas.",
 		"category": "kawaii",
-		"image": "cartulina.jpg"
+		"image": "optimized/cartulina.webp"
 	},
 	{
 		"name": "Esferos BIC",
 		"description": "Esferos punta fina, colores negro, azul y rojo.",
 		"category": "kawaii",
-		"image": "esferos.jpg"
+		"image": "optimized/esferos.webp"
 	},
 	{
 		"name": "Lápices HB",
 		"description": "Lápices HB",
 		"category": "kawaii",
-		"image": "lapices.jpg"
+		"image": "optimized/lapices.webp"
 	},
 	{
 		"name": "Cables USB",
 		"description": "Cables USB de tipo C, diferentes colores.",
 		"category": "tech",
-		"image": "cables_usb.jpg"
+		"image": "optimized/cables_usb.webp"
 	},
 	{
 		"name": "Audifonos",
 		"description": "Audifonos 3.5mm diferentes colores.",
 		"category": "tech",
-		"image": "audifonos.jpg"
+		"image": "optimized/audifonos.webp"
 	},
 	{
 		"name": "Caja con tapa Oso",
 		"description": "Caja plastica con tapa en forma de oso, ideal para almacenar objetos.",
 		"category": "kawaii",
-		"image": "caja_con_tapa_oso.jpg"
+		"image": "optimized/caja_con_tapa_oso.webp"
 	},
 	{
 		"name": "Bolsos de lado Disney",
@@ -130,13 +131,13 @@
 		"name": "Cartuchera Metálica",
 		"description": "Cartuchera metálica con diseño de carro.",
 		"category": "kawaii",
-		"image": "cartuchera_metalica.png"
+		"image": "optimized/cartuchera_metalica.webp"
 	},
 	{
 		"name": "Cartuchera Stich",
 		"description": "Cartuchera de peluche color azul con diseño de Stitch.",
 		"category": "kawaii",
-		"image": "cartuchera_stich.png"
+		"image": "optimized/cartuchera_stich.webp"
 	},
 	{
 		"name": "Crema de manos",
@@ -148,7 +149,7 @@
 		"name": "Cuaderno Cosido",
 		"description": "Cuaderno cosido varios diseños.",
 		"category": "kawaii",
-		"image": "cuaderno_cosido.png"
+		"image": "optimized/cuaderno_cosido.webp"
 	},
 	{
 		"name": "Masa Moldeable",
@@ -160,19 +161,19 @@
 		"name": "Juegos Geométricos",
 		"description": "Juegos geométricos capibara.",
 		"category": "kawaii",
-		"image": "juego_geomitrico_capibara.png"
+		"image": "optimized/juego_geomitrico_capibara.webp"
 	},
 	{
 		"name": "Piñata para pintar",
 		"description": "Piñata en blanco para pintar incliuda caja de colores.",
 		"category": "kawaii",
-		"images": ["lienzo_pinturas.png", "lienzo_2.jpg"]
+		"images": ["optimized/lienzo_pinturas.webp", "optimized/lienzo_2.webp"]
 	},
 	{
 		"name": "Cartera pequeña",
 		"description": "Cartera pequeña con diseño de squid games.",
 		"category": "kawaii",
-		"image": "llavero_squid_game.png"
+		"image": "optimized/llavero_squid_game.webp"
 	},
 	{
 		"name": "Loncheras Térmicas",
@@ -184,7 +185,7 @@
 		"name": "Cosmetiquera",
 		"description": "Cosmetiquera.",
 		"category": "kawaii",
-		"image": "mimi_bag.jpg"
+		"image": "optimized/mimi_bag.webp"
 	},
 	{
 		"name": "Mini Ventilador",
@@ -208,30 +209,30 @@
 		"name": "Limpiador de teclados",
 		"description": "Gel Limpiador de teclados.",
 		"category": "tech",
-		"image": "super_clean.jpg"
+		"image": "optimized/super_clean.webp"
 	},
 	{
 		"name": "Tablero con vincha",
 		"description": "Tablero con vincha A4 varios diseños.",
 		"category": "kawaii",
-		"image": "tablero_vincha.jpg"
+		"image": "optimized/tablero_vincha.webp"
 	},
 	{
 		"name": "Tijera de animalitos",
 		"description": "Tijera diseños de animalitos.",
 		"category": "kawaii",
-		"image": "tijera_animalito.png"
+		"image": "optimized/tijera_animalito.webp"
 	},
 	{
 		"name": "Esferos de minas",
 		"description": "Esferos de minas varios diseños.",
 		"category": "kawaii",
-		"image": "esferos_kawaii.jpg"
+		"image": "optimized/esferos_kawaii.webp"
 	},
 	{
 		"name": "Lápices Capibara",
 		"description": "Lápices con diseños de capibara.",
 		"category": "kawaii",
-		"image": "lapices_capibara.jpg"
+		"image": "optimized/lapices_capibara.webp"
 	}
 ]

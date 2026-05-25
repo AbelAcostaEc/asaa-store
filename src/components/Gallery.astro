@@ -1,9 +1,9 @@
 ---
-import products from "../assets/products.json";
 import ProductCard from "./ProductCard.astro";
+import { getProductsByCategory } from "../lib/products";
 const { category } = Astro.props;
 
-const filteredProducts = products.filter((p) => p.category === category);
+const filteredProducts = getProductsByCategory(category);
 
 // Category configuration
 const categoryConfig = {

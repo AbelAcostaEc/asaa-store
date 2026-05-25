@@ -1,12 +1,13 @@
 ---
-import ProductImages from "./ProductImages";
+import { formatPrice } from "../lib/products";
 
 const { product, category } = Astro.props;
 // Reemplaza con tu número de WhatsApp (en formato internacional sin +)
 const phoneNumber = "593998894898";
 
 // Mensaje predefinido
-const message = `¡Hola! Estoy interesad@ en comprar el producto: ${product.name}.`;
+const priceLabel = formatPrice(product.price);
+const message = `¡Hola! Estoy interesad@ en comprar el producto: ${product.name}. Precio visto: ${priceLabel}.`;
 
 // Crear el enlace de WhatsApp
 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -14,6 +15,8 @@ const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
 let images = product.images ? product.images : product.image ? [product.image] : [];
 // recorrer y armar las rutas completas
 images = images.map((img: string) => `/img/products/${img}`);
+const primaryImage = images[0] ?? "/img/preview.png";
+const detailUrl = `/productos/${product.slug}`;
 
 // Badge configuration
 type BadgeType = "nuevo" | "popular" | "destacado";
@@ -36,11 +39,12 @@ const productSchema = {
 		"@type": "Offer",
 		availability: "https://schema.org/InStock",
 		priceCurrency: "USD",
+		...(product.price ? { price: product.price } : {}),
 	},
 };
 ---
 
-<article class="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl" itemscope itemtype="https://schema.org/Product">
+<article class="group relative overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl" itemscope itemtype="https://schema.org/Product">
 	<script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
 	{/* Badge */}
@@ -48,7 +52,11 @@ const productSchema = {
 
 	{/* Image Container */}
 	<div class={`relative h-56 overflow-hidden sm:h-64 md:h-72 lg:h-80 border-b-4 ${category === "tech" ? "border-tech" : "border-kawaii"}`}>
-		<ProductImages images={images} client:load />
+		<a href={detailUrl} class="block h-full w-full bg-gray-100" aria-label={`Ver detalles de ${product.name}`}>
+			<img src={primaryImage} alt={product.name} class="h-full w-full object-contain transition duration-500 group-hover:scale-105" width="420" height="420" loading="lazy" decoding="async" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
+		</a>
+
+		{images.length > 1 && <div class="absolute top-3 right-3 rounded-full bg-black/70 px-3 py-1 text-xs font-bold text-white shadow-lg">{images.length} fotos</div>}
 
 		{/* Gradient Overlay on Hover */}
 		<div style="pointer-events: none;" class={`absolute inset-0 bg-gradient-to-t ${category === "tech" ? "from-tech/20" : "from-kawaii/20"} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`}></div>
@@ -57,14 +65,23 @@ const productSchema = {
 	{/* Content */}
 	<div class="p-4 sm:p-5">
 		{/* Product Name */}
-		<h2 class={`mb-2 text-lg font-bold sm:text-xl ${category === "tech" ? "text-tech" : "text-kawaii"}`} itemprop="name">
-			{product.name}
-		</h2>
+		<a href={detailUrl} class="block">
+			<h2 class={`mb-2 text-lg font-bold sm:text-xl ${category === "tech" ? "text-tech" : "text-kawaii"}`} itemprop="name">
+				{product.name}
+			</h2>
+		</a>
 
 		{/* Description */}
 		<p class="mb-4 line-clamp-2 text-sm text-gray-600 sm:text-base" itemprop="description">
 			{product.description}
 		</p>
+
+		<div class="mb-4 flex items-end justify-between gap-3">
+			<p class="text-xl font-extrabold text-gray-900">{priceLabel}</p>
+			{product.oldPrice && <p class="text-sm font-semibold text-gray-400 line-through">{formatPrice(product.oldPrice)}</p>}
+		</div>
+
+		<a href={detailUrl} class={`mb-3 flex items-center justify-center rounded-full border-2 px-4 py-2 text-sm font-bold transition-all duration-300 ${category === "tech" ? "border-tech/30 text-tech hover:border-tech hover:bg-tech/5" : "border-kawaii/30 text-kawaii hover:border-kawaii hover:bg-kawaii/5"}`}> Ver detalles </a>
 
 		{/* WhatsApp Button */}
 		<a href={whatsappURL} target="_blank" rel="noopener noreferrer" class={`flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl sm:text-base ${category === "tech" ? "gradient-tech" : "gradient-kawaii"}`}>
