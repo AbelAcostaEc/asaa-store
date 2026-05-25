@@ -13,12 +13,15 @@ const { title, description, canonical, image = "/img/preview.png", type = "websi
 const siteUrl = "https://asaa-soluciones.netlify.app";
 const canonicalURL = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 const imageURL = image.startsWith("http") ? image : `${siteUrl}${image}`;
+const siteName = "Asaa Store - Bazar Angie";
 ---
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="application-name" content={siteName} />
+<meta name="apple-mobile-web-app-title" content="Asaa Store" />
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph / Facebook -->
@@ -28,7 +31,7 @@ const imageURL = image.startsWith("http") ? image : `${siteUrl}${image}`;
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />
 <meta property="og:locale" content="es_ES" />
-<meta property="og:site_name" content="Asaa Soluciones" />
+<meta property="og:site_name" content={siteName} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />

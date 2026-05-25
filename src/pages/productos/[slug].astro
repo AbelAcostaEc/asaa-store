@@ -22,6 +22,11 @@ const structuredData = {
 	"@context": "https://schema.org",
 	"@type": "Product",
 	name: product.name,
+	brand: {
+		"@type": "Brand",
+		name: "Asaa Store",
+		alternateName: "Bazar Angie",
+	},
 	description: product.description,
 	image: product.imagesList.map((image) => `https://asaa-soluciones.netlify.app${image}`),
 	category: categoryLabel,
@@ -34,7 +39,7 @@ const structuredData = {
 };
 ---
 
-<Layout title={`${product.name} | Asaa Soluciones`} description={product.description} image={mainImage} canonical={`/productos/${product.slug}`} structuredData={structuredData}>
+<Layout title={`${product.name} | Asaa Store - Bazar Angie`} description={`${product.description} Disponible en Asaa Store / Bazar Angie Ecuador. Compra por WhatsApp.`} image={mainImage} canonical={`/productos/${product.slug}`} structuredData={structuredData}>
 	<main class="bg-gray-50">
 		<section class="container mx-auto px-4 py-8 sm:py-12">
 			<a href={backUrl} class="mb-6 inline-flex items-center gap-2 text-sm font-bold text-gray-600 transition-colors hover:text-gray-900">

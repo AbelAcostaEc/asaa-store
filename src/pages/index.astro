@@ -1,6 +1,7 @@
 ---
 import BenefitsSection from "../components/BenefitsSection.astro";
 import CategoriesSection from "../components/CategoriesSection.astro";
+import FeaturedProducts from "../components/FeaturedProducts.astro";
 import HeroSlider from "../components/HeroSlider.astro";
 import WelcomeSection from "../components/WelcomeSection.astro";
 import Layout from "../layouts/Layout.astro";
@@ -8,20 +9,27 @@ import Layout from "../layouts/Layout.astro";
 const structuredData = {
 	"@context": "https://schema.org",
 	"@type": "Store",
-	name: "Asaa Soluciones",
-	description: "Tienda online de tecnología y productos kawaii en Ecuador",
+	name: "Asaa Store",
+	alternateName: ["Asaa Soluciones", "ASAA Store", "Bazar Angie", "Bazar Kawaii Angie"],
+	description: "Tienda online en Ecuador de tecnología, accesorios, útiles escolares, papelería y productos kawaii.",
 	url: "https://asaa-soluciones.netlify.app",
 	logo: "https://asaa-soluciones.netlify.app/img/favicon.png",
+	image: "https://asaa-soluciones.netlify.app/img/preview.png",
+	telephone: "+593998894898",
 	address: {
 		"@type": "PostalAddress",
 		addressCountry: "EC",
 	},
-	sameAs: ["https://twitter.com/AsaaSoluciones"],
+	areaServed: {
+		"@type": "Country",
+		name: "Ecuador",
+	},
 };
 ---
 
-<Layout title="Asaa Soluciones - Tecnología & Bazar Kawaii | Tienda Online Ecuador" description="Descubre los mejores gadgets tecnológicos y productos kawaii en Ecuador. Compra por WhatsApp con envío a todo el país. ¡Encuentra lo que más te guste!" canonical="/" structuredData={structuredData}>
+<Layout title="Asaa Store | Bazar Angie - Tecnologia, Kawaii y Utiles en Ecuador" description="Asaa Store, tambien conocido como Bazar Angie, es una tienda online en Ecuador con productos kawaii, tecnologia, accesorios, papeleria y utiles escolares. Compra por WhatsApp." canonical="/" structuredData={structuredData}>
 	<HeroSlider />
+	<FeaturedProducts />
 	<WelcomeSection />
 	<CategoriesSection />
 	<BenefitsSection />
